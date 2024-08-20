@@ -66,7 +66,6 @@ const placeOrder = (pizzaName: string): void | Order => {
     status: "ordered",
   };
   orderQueue.push(newOrder);
-  return newOrder;
 };
 
 const completeOrder = (orderId: number): void | Order => {
@@ -75,7 +74,6 @@ const completeOrder = (orderId: number): void | Order => {
     return console.error(`${orderId} does not exist in the orderQueue`);
   }
   order.status = "completed";
-  return order;
 };
 
 placeOrder("Chicken Bacon Ranch");
@@ -83,13 +81,13 @@ placeOrder("Chicken Bacon Ranch");
 completeOrder(1);
 
 const getPizzaDetail = (identifier: string | number): Pizza | undefined => {
-  if (typeof identifier == "string" || typeof identifier === "number") {
-    return menu.find(
-      (pizza) => pizza.id === identifier || pizza.name === identifier
-    );
-  } else {
+  if (typeof identifier !== "string" || typeof identifier !== "number") {
     throw new TypeError(
       'Parameter "identifier" must be either a string or a number'
+    );
+  } else {
+    return menu.find(
+      (pizza) => pizza.id === identifier || pizza.name === identifier
     );
   }
 };
@@ -99,4 +97,3 @@ console.log(getPizzaDetail(1));
 console.log("Menu", menu);
 console.log("Cash in register", cashInRegister);
 console.log("Order queue", orderQueue);
-
