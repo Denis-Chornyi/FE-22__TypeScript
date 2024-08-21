@@ -54,7 +54,7 @@ addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
 addNewPizza({ name: "BBQ Chicken", price: 12 });
 addNewPizza({ name: "Spicy Sausage", price: 11 });
 
-const placeOrder = (pizzaName: string): void | Order => {
+const placeOrder = (pizzaName: string): void => {
   const selectedPizza = menu.find((pizza) => pizza.name === pizzaName);
   if (!selectedPizza) {
     return console.error(`${pizzaName} does not exist in the menu`);
@@ -68,7 +68,7 @@ const placeOrder = (pizzaName: string): void | Order => {
   orderQueue.push(newOrder);
 };
 
-const completeOrder = (orderId: number): void | Order => {
+const completeOrder = (orderId: number): void => {
   const order = orderQueue.find((order) => order.id === orderId);
   if (!order) {
     return console.error(`${orderId} does not exist in the orderQueue`);
@@ -81,7 +81,7 @@ placeOrder("Chicken Bacon Ranch");
 completeOrder(1);
 
 const getPizzaDetail = (identifier: string | number): Pizza | undefined => {
-  if (typeof identifier !== "string" || typeof identifier !== "number") {
+  if (typeof identifier !== "string" && typeof identifier !== "number") {
     throw new TypeError(
       'Parameter "identifier" must be either a string or a number'
     );

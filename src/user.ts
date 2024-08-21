@@ -27,7 +27,7 @@ updateUser(1, { userName: "new_join_doe" });
 updateUser(4, { role: "guest" });
 console.log(users);
 
-const fetchUserDetails = (userName: string): User => {
+const fetchUserDetails = (userName: string): User | void => {
   const user = users.find((user) => user.userName === userName);
   if (!user) {
     throw new Error(`User with username ${userName} not found`);
